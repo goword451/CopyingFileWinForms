@@ -61,7 +61,7 @@ namespace CopyingFileWinForms
                         !string.IsNullOrWhiteSpace(fileName?.Value) && File.Exists(Path.Combine(sourcePath.Value, fileName.Value)))
                     {
 
-                        CopyFile(sourcePath, destinationPath, fileName);
+                        File.Copy(Path.Combine(sourcePath.Value, fileName.Value), Path.Combine(destinationPath.Value, fileName.Value), true);
                         label1.Text = $"Файл {fileName.Value} успешно скопирован.";
                         sb.AppendLine($"Файл {fileName.Value} успешно скопирован.");
                         progressBar1.Value++;
@@ -102,18 +102,6 @@ namespace CopyingFileWinForms
         private void Form1_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void CopyFile(XAttribute sourcePath, XAttribute destinationPath, XAttribute fileName)
-        {
-            try
-            {
-                File.Copy(Path.Combine(sourcePath.Value, fileName.Value), Path.Combine(destinationPath.Value, fileName.Value));
-            }
-            catch (Exception)
-            {
-                File.Copy(Path.Combine(sourcePath.Value, fileName.Value), Path.Combine(destinationPath.Value, fileName.Value), true);
-            }
         }
     }
 }
