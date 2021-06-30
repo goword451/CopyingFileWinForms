@@ -70,21 +70,26 @@ namespace CopyingFileWinForms
 
                     else if (sourcePath == null || string.IsNullOrWhiteSpace(sourcePath.Value) || !Directory.Exists(@"" + sourcePath.Value))
                     {
+                        label1.Text = $"Отсутствует путь источника {sourcePath.Value}.";
                         sb.AppendLine($"Отсутствует путь источника {sourcePath.Value}.");
                         progressBar1.Value++;
                     }
 
                     else if (destinationPath == null || string.IsNullOrWhiteSpace(destinationPath.Value) || !Directory.Exists(@"" + destinationPath.Value))
                     {
+                        label1.Text = $"Отсутствует путь назначения {destinationPath.Value}.";
                         sb.AppendLine($"Отсутствует путь назначения {destinationPath.Value}.");
                         progressBar1.Value++;
                     }
 
                     else
                     {
+                        label1.Text = ($"Отсутствует файл с именем {fileName.Value}.");
                         sb.AppendLine($"Отсутствует файл с именем {fileName.Value}.");
                         progressBar1.Value++;
                     }
+
+                    await Task.Delay(1000);
                 }
                 File.AppendAllText(@"C:\Users\gowor\Desktop\log.txt", sb.ToString());
                 sb.Clear();
